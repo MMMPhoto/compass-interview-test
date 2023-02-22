@@ -27,10 +27,9 @@
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" FontSize="20" HorizontalContentAlignment="Center" Margin="0 50 0 0" Width="800" FontWeight="Bold" Content="Opacity Calculator"/>
         <Label Grid.Column="1" Grid.Row="1" FontSize="16" HorizontalContentAlignment="Right" Margin="0 50 0 0 " Content="Medium Type"/>
-        <!-- Todo A.Modify combobox to allow values from AvailableMaterialTypes and set to ChosenMaterialType in viewmodel NEED TO ADD EVENT HANDLER-->
+        <!-- Todo A.Modify combobox to allow values from AvailableMaterialTypes and set to ChosenMaterialType in viewmodel Don't know xaml enough to get value from ComboBox-->
 		<ComboBox Grid.Column="2" Grid.Row="1" FontSize="16" HorizontalContentAlignment="Left" Margin="0 50 0 0"
-				 x:Name="selectOption" Text="Select Option"
-                 SelectedValue="{Binding ChosenMaterial, UpdateSourceTrigger=PropertyChanged}">
+                 SelectedValue="{Binding ChosenMaterialType, UpdateSourceTrigger=PropertyChanged}">
 			<ComboBoxItem Name="Air">Air</ComboBoxItem>
 			<ComboBoxItem Name="Water">Water</ComboBoxItem>
 			<ComboBoxItem Name="Carbon">Carbon</ComboBoxItem>
