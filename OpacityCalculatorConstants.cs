@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Navigation;
 
 namespace CompassInterviewTest
 {
@@ -72,17 +73,25 @@ namespace CompassInterviewTest
         //v:  Frequency of light
         private static readonly Func<MaterialType, double, double> LinearAttenuationFunction =
             (materialType, v) =>
-            double elecVolts = FrequencyToElectronVolts(v);
-            double lacVal1;
-            double lacVal2;
-            if (elecVolts > ElectronVoltsA && elecVolts<ElectronVoltsB) {
-                lacVal1 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsA];
-                lacVal2 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsB];                    
-            } else if (elecVolts > ElectronVoltsB && elecVolts<ElectronVoltsC) {
-                lacVal1 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsB];
-                lacVal2 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsC];     {
-            }
-            LinearInterpolation();
+            {
+                var elecVolts = FrequencyToElectronVolts(v);
+                double lacVal1;
+                double lacVal2;
+                if (elecVolts > ElectronVoltsA && elecVolts < ElectronVoltsB)
+                {
+                    lacVal1 = LinearAttenuationCoefficientTable[(materialType, ElectronVoltsA)];
+                    lacVal2 = LinearAttenuationCoefficientTable[(materialType, ElectronVoltsB)];
+                }
+                else if (elecVolts > ElectronVoltsB && elecVolts < ElectronVoltsC)
+                {
+                    lacVal1 = LinearAttenuationCoefficientTable[(materialType, ElectronVoltsB)];
+                    lacVal2 = LinearAttenuationCoefficientTable[(materialType, ElectronVoltsC)];
+                }
+                // LinearInterpolation(lacVal1, lacVal2, );
+                return elecVolts;
+
+            };
+
 
 
         //Opacity Distance Function

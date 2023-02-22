@@ -60,7 +60,7 @@ namespace CompassInterviewTest
             //DONE?
             if (!ValidateInputVariables(out var errorMessage)) {
                 errorMessage = "Chosen frequency is outside allowed range";
-                PlotView.Model = newPlotModel().Series.Clear();
+                // PlotView.Model = newPlotModel().Series.Clear();
                 calculatedIntensityLabel.Content = "N/A";
             } else {
                 errorMessage = "";
@@ -102,7 +102,18 @@ namespace CompassInterviewTest
             //Todo     Also use PlotView.Model = newPlotModel() to clear the plot if validation fails
             //Todo     Assign "N/A" to the calculatedIntensityLabel if validation fails
             //Todo     Make sure to clear the error message if there is no error
-                
+            //DONE?
+            if (!ValidateInputVariables(out var errorMessage))
+            {
+                errorMessage = "Chosen distance is outside allowed range";
+                // PlotView.Model = newPlotModel().Series.Clear();
+                calculatedIntensityLabel.Content = "N/A";
+            }
+            else
+            {
+                errorMessage = "";
+            }
+
             var newModel = new PlotModel()
             {
                 Title = $"Intensity of {_viewModel.ChosenFrequency}EHz radiation through {_viewModel.ChosenMaterialType.ToString()} across to {_viewModel.ChosenDistance}m"
