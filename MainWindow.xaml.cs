@@ -39,6 +39,7 @@ namespace CompassInterviewTest
         {
             //Todo B. Modify this variable assignment to calculate the intensity of the light using OpacityDistanceFunction based on the chosen values in the viewModel and set it to calculatedIntensityLabel.Content
             //Todo (Make sure to convert the ChosenFrequency value to exahertz by multiplying it by 1.0E18)
+            // DONE
             calculatedIntensityLabel.Content = OpacityCalculatorConstants.OpacityDistanceFunction(_viewModel.ChosenMaterialType, _viewModel.ChosenIntensity, _viewModel.ChosenFrequency * 1.0E18, _viewModel.ChosenDistance);
         }
 
@@ -56,7 +57,15 @@ namespace CompassInterviewTest
             //Todo     Also use PlotView.Model = newPlotModel() to clear the plot if validation fails
             //Todo     Assign "N/A" to the calculatedIntensityLabel if validation fails
             //Todo     Make sure to clear the error message if there is no error
-                
+            //DONE?
+            if (!ValidateInputVariables(out var errorMessage)) {
+                errorMessage = "Chosen frequency is outside allowed range";
+                PlotView.Model = newPlotModel().Series.Clear();
+                calculatedIntensityLabel.Content = "N/A";
+            } else {
+                errorMessage = "";
+            }
+
             var newModel = new PlotModel()
             {
                 Title = $"Intensity through {_viewModel.ChosenDistance}m of {_viewModel.ChosenMaterialType.ToString()} across frequency range"
@@ -76,6 +85,12 @@ namespace CompassInterviewTest
             //Todo D. Similarly to how its done in PlotDistanceButton_OnClick, add a function series to the newModel variable
             //Todo     This function series will plot the calculated intensity from the minimum frequency to the maximum frequency, incrementing by the frequency increment constant. All of these are given the OpacityCalculatorConstants.cs
             //Todo     The function will use the input variable as frequency rather than the ChosenFrequency variable
+            newModel.Series.Add( 
+                //Convert Chosen Frequency to exahertz
+                new FunctionSeries(x => OpacityCalculatorConstants.OpacityDistanceFunction(_viewModel.ChosenMaterialType, _viewModel.ChosenIntensity, x, _viewModel.ChosenDistance),
+                OpacityCalculatorConstants.MinimumFrequency,
+                _viewModel.ChosenFrequency,
+                (_viewModel.ChosenFrequency - OpacityCalculatorConstants.MinimumFrequency) / OpacityCalculatorConstants.FrequencyIncrement));
             
             PlotView.Model = newModel;
             
