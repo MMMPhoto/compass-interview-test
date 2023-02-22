@@ -8,34 +8,34 @@ namespace CompassInterviewTest
     {
         public enum MaterialType
         {
-            [Description("Air")]Air,
-            [Description("Water")]Water,
-            [Description("Carbon")]Carbon,
-            [Description("Alumninum")]Aluminum
+            [Description("Air")] Air,
+            [Description("Water")] Water,
+            [Description("Carbon")] Carbon,
+            [Description("Alumninum")] Aluminum
         }
-        
+
         private const double PlankConstant = 6.626E-34;
         private const double ElementalCharge = 1.602E-19;
-        
+
         //Frequency to electron volts
-        public static Func<double, double> FrequencyToElectronVolts = 
+        public static Func<double, double> FrequencyToElectronVolts =
             v => v * PlankConstant / ElementalCharge;
-        
+
         public const double MinimumDistance = 0;
         public const double MaximumDistance = 1000;
         public const double DistanceIncrement = 100.0;
-        
+
         public const double MinimumIntensity = 1;
         public const double MaximumIntensity = 1000;
-        
+
         public const double MinimumFrequency = 2.41774826E19;
         public const double MaximumFrequency = 1.20887413E20;
         public const double FrequencyIncrement = 100.0;
-        
+
         private const int ElectronVoltsA = 100000;
         private const int ElectronVoltsB = 200000;
         private const int ElectronVoltsC = 500000;
-        
+
         //Linear Attenuation Coefficient Table (MaterialType, ElectronVolts) => LinearAttenuationCoefficient
         private static Dictionary<(MaterialType, int), double> LinearAttenuationCoefficientTable = new Dictionary<(MaterialType, int), double>()
         {
@@ -52,7 +52,7 @@ namespace CompassInterviewTest
             {(MaterialType.Aluminum, ElectronVoltsB), 32.4},
             {(MaterialType.Aluminum, ElectronVoltsC), 22.7},
         };
-        
+
         //Todo E. Redefine this function to do the following:
         //Todo     1. Calculate and return the linearly approximated fx
         //Linear Interpolation Function
@@ -68,9 +68,23 @@ namespace CompassInterviewTest
         //Todo     3. Retrieve the LinearAttenuationCoefficient values for those 2 ElectronVolt constant values for the materialType parameter
         //Todo     4. Use LinearInterpolation Func to return an estimate of the LinearAttenuationCoefficient
         //Mass Attenuation Function
+        //DONE?
         //v:  Frequency of light
-        private static readonly Func<MaterialType, double, double> LinearAttenuationFunction = (materialType, v) => LinearAttenuationCoefficientTable[(materialType, ElectronVoltsB)];
-        
+        private static readonly Func<MaterialType, double, double> LinearAttenuationFunction =
+            (materialType, v) =>
+            double elecVolts = FrequencyToElectronVolts(v);
+            double lacVal1;
+            double lacVal2;
+            if (elecVolts > ElectronVoltsA && elecVolts<ElectronVoltsB) {
+                lacVal1 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsA];
+                lacVal2 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsB];                    
+            } else if (elecVolts > ElectronVoltsB && elecVolts<ElectronVoltsC) {
+                lacVal1 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsB];
+                lacVal2 = LinearAttenuationCoefficientTable[materialType, ElectronVoltsC];     {
+            }
+            LinearInterpolation();
+
+
         //Opacity Distance Function
         //i0: Intensity of light at initial point
         //v:  Frequency
