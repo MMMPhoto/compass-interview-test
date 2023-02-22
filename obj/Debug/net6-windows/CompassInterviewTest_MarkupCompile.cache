@@ -5,16 +5,16 @@ winexe
 C#
 .cs
 C:\Users\maxmcdonough\source\repos\compass-interview-test\obj\Debug\net6-windows\
-CompassInterviewTest
+CompassInterviewTest_sfbp5tft_wpftmp
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\maxmcdonough\source\repos\compass-interview-test\App.xaml
 11407045341
 
-5392379299
-197-1059190999
+7-1553110151
+394-2118381998
 MainWindow.xaml;
 
-False
+True
 

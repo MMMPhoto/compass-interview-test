@@ -39,7 +39,7 @@ namespace CompassInterviewTest
         {
             //Todo B. Modify this variable assignment to calculate the intensity of the light using OpacityDistanceFunction based on the chosen values in the viewModel and set it to calculatedIntensityLabel.Content
             //Todo (Make sure to convert the ChosenFrequency value to exahertz by multiplying it by 1.0E18)
-            calculatedIntensityLabel.Content = _viewModel.ChosenIntensity;
+            calculatedIntensityLabel.Content = OpacityCalculatorConstants.OpacityDistanceFunction(_viewModel.ChosenMaterialType, _viewModel.ChosenIntensity, _viewModel.ChosenFrequency * 1.0E18, _viewModel.ChosenDistance);
         }
 
         //Todo F. Modify this function to set an error message to errorMessage and return false if any of the input variables are outside of the ranges specified in OpacityCalculatorConstants
