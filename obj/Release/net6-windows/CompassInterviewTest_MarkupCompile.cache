@@ -4,11 +4,11 @@
 winexe
 C#
 .cs
-C:\Users\maxmcdonough\source\repos\compass-interview-test\obj\Debug\net6-windows\
+C:\Users\maxmcdonough\source\repos\compass-interview-test\obj\Release\net6-windows\
 CompassInterviewTest
 none
 false
-TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+TRACE;RELEASE;NET;NET6_0;NETCOREAPP
 C:\Users\maxmcdonough\source\repos\compass-interview-test\App.xaml
 11407045341
 

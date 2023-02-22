@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\bin\\Debug",
+    "\\bin\\Release\\net6-windows",
+    "\\bin\\Release\\netcoreapp3.1-windows"
   ],
+  "SelectedNode": "\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
